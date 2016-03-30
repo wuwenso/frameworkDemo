@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.demo.persistence.mapper.auto.CarMapper" >
+  <resultMap id="BaseResultMap" type="com.demo.entity.auto.Car" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="license_num" property="licenseNum" jdbcType="VARCHAR" />
+    <result column="car_no" property="carNo" jdbcType="VARCHAR" />
+    <result column="car_type" property="carType" jdbcType="VARCHAR" />
+    <result column="seat_num" property="seatNum" jdbcType="INTEGER" />
+    <result column="car_num" property="carNum" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, license_num, car_no, car_type, seat_num, car_num, status, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_CAR
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T_CAR
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.demo.entity.auto.Car" >
+    insert into T_CAR (id, license_num, car_no, 
+      car_type, seat_num, car_num, 
+      status, create_time, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{licenseNum,jdbcType=VARCHAR}, #{carNo,jdbcType=VARCHAR}, 
+      #{carType,jdbcType=VARCHAR}, #{seatNum,jdbcType=INTEGER}, #{carNum,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.entity.auto.Car" >
+    insert into T_CAR
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="licenseNum != null" >
+        license_num,
+      </if>
+      <if test="carNo != null" >
+        car_no,
+      </if>
+      <if test="carType != null" >
+        car_type,
+      </if>
+      <if test="seatNum != null" >
+        seat_num,
+      </if>
+      <if test="carNum != null" >
+        car_num,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="licenseNum != null" >
+        #{licenseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="carNo != null" >
+        #{carNo,jdbcType=VARCHAR},
+      </if>
+      <if test="carType != null" >
+        #{carType,jdbcType=VARCHAR},
+      </if>
+      <if test="seatNum != null" >
+        #{seatNum,jdbcType=INTEGER},
+      </if>
+      <if test="carNum != null" >
+        #{carNum,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.entity.auto.Car" >
+    update T_CAR
+    <set >
+      <if test="licenseNum != null" >
+        license_num = #{licenseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="carNo != null" >
+        car_no = #{carNo,jdbcType=VARCHAR},
+      </if>
+      <if test="carType != null" >
+        car_type = #{carType,jdbcType=VARCHAR},
+      </if>
+      <if test="seatNum != null" >
+        seat_num = #{seatNum,jdbcType=INTEGER},
+      </if>
+      <if test="carNum != null" >
+        car_num = #{carNum,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.entity.auto.Car" >
+    update T_CAR
+    set license_num = #{licenseNum,jdbcType=VARCHAR},
+      car_no = #{carNo,jdbcType=VARCHAR},
+      car_type = #{carType,jdbcType=VARCHAR},
+      seat_num = #{seatNum,jdbcType=INTEGER},
+      car_num = #{carNum,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

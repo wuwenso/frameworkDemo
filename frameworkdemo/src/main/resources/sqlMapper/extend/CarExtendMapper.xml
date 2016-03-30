@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.demo.persistence.mapper.extend.CarExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.demo.entity.auto.Car" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="license_num" property="licenseNum" jdbcType="VARCHAR" />
+    <result column="car_no" property="carNo" jdbcType="VARCHAR" />
+    <result column="car_type" property="carType" jdbcType="VARCHAR" />
+    <result column="seat_num" property="seatNum" jdbcType="INTEGER" />
+    <result column="car_num" property="carNum" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, license_num, car_no, car_type, seat_num, car_num, status, create_time, update_time
+  </sql>
+  <select id="findCarList" resultMap="BaseResultMap">
+	select * from t_car
+	where 1=1
+		<if test="map.carType!=null and map.carType!=''">
+			and car_type=#{carType}
+		</if>
+		<if test="map.licenseNum!=null and map.licenseNum!=''">
+			and license_num=#{map.licenseNum}
+		</if>
+		<if test="map.carNum!=null and map.carNum!=''">
+			and car_num=#{map.carNum}
+		</if>
+		<if test="map.status!=null and map.status!=''">
+			and status=#{map.status}		
+		</if>
+		<if test="map.sortField!=null and map.sortField!=''">
+			order by ${map.sortField }
+				<if test="map.sortType!=null and map.sortType!=''">
+					${map.sortType}
+				</if>
+		</if>
+		<if test="map.sortField==null or map.sortField==''">
+			order by id desc
+		</if>	
+	</select>
+	<delete id="delCarList" >
+		delete from t_car
+	where  id in 
+		<foreach collection="ids" item="item" index="index" separator="," open="(" close=")"> 
+		#{item} 
+		</foreach>
+	</delete>
+</mapper>

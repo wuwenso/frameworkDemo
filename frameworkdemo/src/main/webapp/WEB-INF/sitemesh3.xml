@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemesh >
+	<mime-type>text/html</mime-type>
+	<mime-type>application/vnd.wap.xhtml+xml</mime-type>
+	<mime-type>application/xhtml+xml</mime-type>
+
+	<mapping decorator="/WEB-INF/decorator/decorator.jsp" />
+
+	<!-- 不需要装饰的页面 -->
+	<excludes>
+		<pattern>/static/*</pattern>
+	</excludes>
+	
+	<mapping path="/login" exclue="true"/>
+	<mapping path="**.ajax" exclue="true"/><!-- ajax后缀加 .ajax或json不进行页面渲染 -->
+	<mapping path="**.json" exclue="true"/>
+</sitemesh>
