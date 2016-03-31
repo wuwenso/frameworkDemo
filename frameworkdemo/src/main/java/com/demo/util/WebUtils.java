@@ -13,10 +13,6 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.regex.Pattern;
 
-/**
- * User: zhaotianwu DateTime: 2014/9/11 13:31 Copyright © 2014/9/11 Shanghai
- * Raxtone Software Co.,Ltd Allright Reserved
- */
 public class WebUtils extends org.springframework.web.util.WebUtils {
 
 	public static String MD5(String inStr) {
