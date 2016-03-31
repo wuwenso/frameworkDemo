@@ -27,9 +27,7 @@ import java.util.Map;
 /**
  * 来自OSChina的思想
  * @description
- * @author: holysky
- * @date: 2015/8/11 16:55 Copyright © 2015/8/11 Shanghai Raxtone Software
- *        Co.,Ltd Allright Reserved
+ * @author: xwang
  */
 public class RequestContext {
 
